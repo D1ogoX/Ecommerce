@@ -6,18 +6,47 @@
 
 <div class="container">
     <h1>@Model.Product.title</h1>
+    <hr />
 
     <div class="row">
         <div class="col">
-            <img src="@Model.Product.image" />
+            <img class="img-thumbnail" src="@Model.Product.image" />
         </div>
 
         <div class="col">
+
+            <h5><strong>Description:</strong></h5>
             <p>@Model.Product.description</p>
 
-            <p><strong>@Model.Product.category</strong></p>
+            <p><strong>Category:</strong> @Model.Product.category</p>
 
-            <p>@Model.Product.price</p>
+            <p><strong>Price:</strong> @Model.Product.price€</p>
         </div>
+    </div>
+</div>
+
+<hr />
+
+<div class="container">
+    <h5><strong>Similar products</strong></h5>
+    <!-- Similar products -->
+    <div class="card-group">
+        @foreach (var product in Model.SimilarProducts)
+        {
+            <div class="card">
+                <img src="@product.image" class="card-img-top img-thumbnail" alt="@product.title">
+                <div class="card-body">
+                    <a class="card-title" asp-page="/Products/Details" asp-route-id="@product.id">@product.title</a>
+                    <p class="card-text">@product.description</p>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col">
+                            <small class="text-muted">@product.price€</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
 </div>

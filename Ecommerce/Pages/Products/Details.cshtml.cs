@@ -15,9 +15,15 @@ namespace Ecommerce.Pages.Products
 
         public ProductModel Product { get; set; }
 
+        //Just demosntrative
+        public List<ProductModel> SimilarProducts { get; set; }
+
         public void OnGet(int id)
         {
             Product = _productRepository.GetByIdAsync(id).Result;
+
+            Random rnd = new Random();
+            SimilarProducts = _productRepository.GetAllAsync().Result.OrderBy(x => rnd.Next()).Take(3).ToList();
         }
     }
 }

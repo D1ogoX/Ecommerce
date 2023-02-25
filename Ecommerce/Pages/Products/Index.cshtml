@@ -40,9 +40,9 @@
 {
         <div class="col-lg-2 d-flex align-items-stretch">
             <div class="card h-30">
-                <img src="@product.image" class="card-img-top" alt="@product.title">
+                <img src="@product.image" class="card-img-top img-thumbnail" alt="@product.title">
                 <div class="card-body">
-                    <a asp-page="/Products/Details" asp-route-id="@product.id"><h5 class="card-title">@product.title</h5></a>
+                    <a class="card-title" asp-page="/Products/Details" asp-route-id="@product.id">@product.title</a>
                     <p class="card-text">@product.description</p>
                 </div>
                 <div class="card-footer">

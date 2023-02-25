@@ -20,12 +20,23 @@
                             <a class="nav-link active" aria-current="page" asp-page="/Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" asp-page="/Products/Index">Products</a>
+                            <a class="nav-link" aria-current="page" asp-page="/Products/Index">Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
+                            <a class="nav-link" href="#">About</a>
                         </li>
                     </ul>
+
+                    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" asp-page="/Products/Index">Cart</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Login</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -38,7 +49,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - Ecommerce - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2023 - Ecommerce - <a asp-area="" asp-page="/Privacy">About</a>
         </div>
     </footer>
 
