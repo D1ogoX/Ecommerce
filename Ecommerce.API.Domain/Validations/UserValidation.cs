@@ -15,10 +15,10 @@ namespace Ecommerce.API.Domain.Validations
                 .NotEmpty()
                 .MinimumLength(5);
 
-            RuleFor(x => x.name)
-                .NotNull()
-                .NotEmpty()
-                .MinimumLength(3);
+            //RuleFor(x => x.name)
+            //    .NotNull()
+            //    .NotEmpty()
+            //    .MinimumLength(3);
 
             RuleFor(x => x.lastname)
                 .NotNull()

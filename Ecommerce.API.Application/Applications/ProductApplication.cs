@@ -30,6 +30,18 @@ namespace Ecommerce.API.Application.Applications
             return Response.OK(response);
         }
 
+        public async Task<Response<List<ProductResponse>>> GetAllByCategoryAsync(string category)
+        {
+            Response<List<ProductModel>> product = await _productService.GetAllByCategoryAsync(category);
+
+            if (product.Report.Any())
+                return Response.Unprocessable<List<ProductResponse>>(product.Report);
+
+            var response = _mapper.Map<List<ProductResponse>>(product.Data);
+
+            return Response.OK(response);
+        }
+
         public async Task<Response<ProductResponse>> GetByIdAsync(int Id)
         {
             Response<ProductModel> product = await _productService.GetByIdAsync(Id);

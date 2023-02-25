@@ -23,6 +23,15 @@ namespace Ecommerce.API.Domain.Services
             return response;
         }
 
+        public async Task<Response<List<ProductModel>>> GetAllByCategoryAsync(string category)
+        {
+            var response = new Response<List<ProductModel>>();
+
+            var data = await _productRepository.GetAllByCategoryAsync(category);
+            response.Data = data;
+            return response;
+        }
+
         public async Task<Response<ProductModel>> GetByIdAsync(int Id)
         {
             var response = new Response<ProductModel>();

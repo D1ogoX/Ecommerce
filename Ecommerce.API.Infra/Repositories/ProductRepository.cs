@@ -16,14 +16,23 @@ namespace Ecommerce.API.Infra.Repositories
 
         public async Task<List<ProductModel>> GetAllAsync()
         {
-            var data = await _serviceConnector.GetAsync("/products/getAllProducts");
+            var data = await _serviceConnector.GetAsync("products");
 
             return JsonConvert.DeserializeObject<List<ProductModel>>(data);
         }
 
-        public Task<ProductModel> GetByIdAsync(int Id)
+        public async Task<List<ProductModel>> GetAllByCategoryAsync(string category)
         {
-            throw new NotImplementedException();
+            var data = await _serviceConnector.GetAsync($"products/category/{category}");
+
+            return JsonConvert.DeserializeObject<List<ProductModel>>(data);
+        }
+
+        public async Task<ProductModel> GetByIdAsync(int Id)
+        {
+            var data = await _serviceConnector.GetAsync($"products/{Id}");
+
+            return JsonConvert.DeserializeObject<ProductModel>(data);
         }
     }
 }

@@ -6,6 +6,7 @@ namespace Ecommerce.API.Application.Interfaces
     public interface IProductApplication
     {
         Task<Response<ProductResponse>> GetByIdAsync(int Id);
+        Task<Response<List<ProductResponse>>> GetAllByCategoryAsync(string category);
         Task<Response<List<ProductResponse>>> GetAllAsync();
     }
 }

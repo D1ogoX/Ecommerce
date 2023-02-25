@@ -17,7 +17,11 @@ namespace Ecommerce.API.Application.Mapper
 
         private void ProductMap()
         {
-            CreateMap<ProductRequest, ProductModel>();
+            CreateMap<RatingRequest, RatingResponse>();
+            CreateMap<RatingModel, RatingResponse>();
+
+            CreateMap<ProductRequest, ProductModel>()
+                .ForMember(dest => dest.rating, opt => opt.MapFrom(x => x));
             CreateMap<ProductModel, ProductResponse>();
         }
     }

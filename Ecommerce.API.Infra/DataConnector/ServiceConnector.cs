@@ -14,7 +14,15 @@ namespace Ecommerce.API.Infra.DataConnector
 
         public async Task<string> GetAsync(string url)
         {
-            return await client.GetStringAsync(client.BaseAddress + url);
+            string BaseAddress = client.BaseAddress.AbsoluteUri;
+
+            var response = await client.GetAsync(BaseAddress + url);
+
+            if (response.IsSuccessStatusCode)
+                return await response.Content.ReadAsStringAsync();
+
+            else
+                throw new Exception("Request error: " + response.StatusCode.ToString());
         }
     }
 }
