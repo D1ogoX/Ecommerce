@@ -1,0 +1,68 @@
+﻿@page
+@model Ecommerce.Pages.Products.IndexModel
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<div class="container text-center">
+
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col">
+            <form method="post">
+                <select name="category" class="form-select">
+                    @foreach (var category in Model.Categories)
+                    {
+                        if (category == Model.SelectedCategory)
+                        {
+                            <option value="@category" selected>@category</option>
+                        }
+
+                        else
+                        {
+                            <option value="@category">@category</option>
+                        }
+                    }
+                </select>
+
+                <button type="submit" class="btn btn-light" asp-page-handler="Category">Search</button>
+            </form>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+</div>
+
+<div class="row row-cols-1 row-cols-md-5 g-4">
+@foreach(var product in Model.Products)
+{
+        <div class="col-lg-2 d-flex align-items-stretch">
+            <div class="card h-30">
+                <img src="@product.image" class="card-img-top" alt="@product.title">
+                <div class="card-body">
+                    <a asp-page="/Products/Details" asp-route-id="@product.id"><h5 class="card-title">@product.title</h5></a>
+                    <p class="card-text">@product.description</p>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col">
+                            <small class="text-muted">@product.price€</small>
+                            @*@if (Model.IsLogedIn)
+                            {
+                                <form method="post">
+
+                                    <input type="hidden" name="id" value="@product.id"/>
+
+                                    <button type="submit" asp-page-handler="AddCart">Add</button>
+
+                                </form>
+                            }*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+}
+</div>

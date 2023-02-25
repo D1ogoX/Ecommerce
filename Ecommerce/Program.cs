@@ -1,4 +1,23 @@
+using Ecommerce;
+using Ecommerce.Interfaces;
+using Ecommerce.Interfaces.DataConnector;
+using Ecommerce.Interfaces.Repositories;
+using Ecommerce.Repositories;
+using Ecommerce.Repositories.DataConnector;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var config = new ConfigurationBuilder()
+        .SetBasePath(Directory.GetCurrentDirectory())
+        .AddJsonFile("appsettings.json", optional: true)
+        .AddCommandLine(args)
+        .Build();
+
+builder.Services.AddScoped<IServiceConnector>(x => new ServiceConnector(config.GetConnectionString("default")));
+
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IUtils, Utils>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();

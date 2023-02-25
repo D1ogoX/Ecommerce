@@ -1,0 +1,23 @@
+﻿@page
+@model Ecommerce.Pages.Products.DetailsModel
+@{
+    ViewData["Title"] = "Detail - " + Model.Product.title;
+}
+
+<div class="container">
+    <h1>@Model.Product.title</h1>
+
+    <div class="row">
+        <div class="col">
+            <img src="@Model.Product.image" />
+        </div>
+
+        <div class="col">
+            <p>@Model.Product.description</p>
+
+            <p><strong>@Model.Product.category</strong></p>
+
+            <p>@Model.Product.price</p>
+        </div>
+    </div>
+</div>
