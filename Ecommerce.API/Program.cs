@@ -1,12 +1,14 @@
 using Ecommerce.API.Application.Applications;
 using Ecommerce.API.Application.Interfaces;
-using Ecommerce.API.Application.Mapper;
 using Ecommerce.API.Domain.Interfaces.Repositories;
 using Ecommerce.API.Domain.Interfaces.Repositories.DataConnector;
 using Ecommerce.API.Domain.Interfaces.Services;
 using Ecommerce.API.Domain.Services;
 using Ecommerce.API.Infra.DataConnector;
 using Ecommerce.API.Infra.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +36,10 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryApplication, CategoryApplication>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+builder.Services.AddScoped<IUserApplication, UserApplication>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

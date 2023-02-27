@@ -1,8 +1,6 @@
-﻿using Newtonsoft.Json;
-
-namespace Ecommerce.API.Domain.Models
+﻿namespace Ecommerce.Models
 {
-    public class UserModel : EntityBase
+    public class UserModel : BaseModel
     {
         public string email { get; set; }
         public string username { get; set; }
@@ -10,7 +8,6 @@ namespace Ecommerce.API.Domain.Models
         public NameModel name { get; set; }
         public AddressModel address { get; set; }
     }
-
     public class NameModel
     {
         public string firstname { get; set; }
@@ -29,8 +26,6 @@ namespace Ecommerce.API.Domain.Models
     public class GeolocationModel
     {
         public string lat { get; set; }
-
-        [JsonProperty(PropertyName = "long")]
         public string longitude { get; set; }
     }
 }

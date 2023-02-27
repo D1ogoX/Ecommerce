@@ -15,6 +15,15 @@ namespace Ecommerce.API.Domain.Services
             _userRepository = userRepository;
         }
 
+        public async Task<Response<string>> AuthenticationAsync(string password, string username)
+        {
+            var response = new Response<string>();
+
+            response.Data = await _userRepository.AuthenticationAsync(password, username);
+
+            return response;
+        }
+
         public async Task<Response<List<UserModel>>> GetAllAsync()
         {
             var response = new Response<List<UserModel>>();
@@ -29,6 +38,15 @@ namespace Ecommerce.API.Domain.Services
             var response = new Response<UserModel>();
 
             response.Data = await _userRepository.GetByIdAsync(Id);
+
+            return response;
+        }
+
+        public async Task<Response<UserModel>> GetByUsernameAsync(string username)
+        {
+            var response = new Response<UserModel>();
+
+            response.Data = await _userRepository.GetByUsernameAsync(username);
 
             return response;
         }
