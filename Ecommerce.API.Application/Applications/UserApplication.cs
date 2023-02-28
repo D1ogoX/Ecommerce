@@ -30,7 +30,8 @@ namespace Ecommerce.API.Application.Applications
 
             response.Data = new AuthResponse()
             {
-                Token = isAuthenticated.Data
+                Token = isAuthenticated.Data,
+                userId = _userService.GetAllAsync().Result.Data.ToList().Where(x => x.username == auth.Username).First().id,
             };
 
             return response;

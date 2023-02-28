@@ -1,6 +1,7 @@
 ﻿using Ecommerce.API.Domain.Interfaces.Repositories.DataConnector;
 using Ecommerce.API.Domain.Models;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 
 namespace Ecommerce.API.Infra.DataConnector
 {
@@ -50,6 +51,23 @@ namespace Ecommerce.API.Infra.DataConnector
 
             else
                 throw new Exception("Request error: " + response.StatusCode.ToString());
+        }
+
+        public async Task<bool> PostAsync(string url, string json)
+        {
+            string BaseAddress = client.BaseAddress.AbsoluteUri;
+
+            var buffer = System.Text.Encoding.UTF8.GetBytes(json);
+            var byteContent = new ByteArrayContent(buffer);
+
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            var response = await client.PostAsync(BaseAddress + url, byteContent);
+
+            if (response.IsSuccessStatusCode)
+                return true;
+
+            return false;
         }
     }
 }

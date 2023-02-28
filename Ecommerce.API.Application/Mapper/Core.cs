@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using Ecommerce.API.Application.DataContract.Request.Cart;
 using Ecommerce.API.Application.DataContract.Request.Product;
 using Ecommerce.API.Application.DataContract.Request.User;
+using Ecommerce.API.Application.DataContract.Response.Cart;
 using Ecommerce.API.Application.DataContract.Response.Product;
 using Ecommerce.API.Application.DataContract.Response.User;
 using Ecommerce.API.Domain.Models;
@@ -16,6 +18,7 @@ namespace Ecommerce.API.Application.Mapper
         {
             ProductMap();
             UserMap();
+            CartMap();
         }
 
         private void ProductMap()
@@ -38,6 +41,17 @@ namespace Ecommerce.API.Application.Mapper
             CreateMap<NameModel, NameModelResponse>();
             CreateMap<UserRequest, UserResponse>();
             CreateMap<UserModel, UserResponse>();
+        }
+
+        private void CartMap()
+        {
+            CreateMap<CartProductRequest, CartProductResponse>();
+            CreateMap<CartProductModel, CartProductResponse>();
+
+            CreateMap<CartRequest, CartResponse>();
+            CreateMap<CartRequest, CartModel>();
+            CreateMap<CartModel, CartRequest>();
+            CreateMap<CartModel, CartResponse>();
         }
     }
 }

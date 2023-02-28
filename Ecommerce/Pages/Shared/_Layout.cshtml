@@ -28,14 +28,26 @@
                     </ul>
 
                     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" asp-page="/Products/Index">Cart</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Login</a>
-                            </li>
-                        </ul>
+                        @if (!string.IsNullOrEmpty(Context.Session.GetString("Ecommerce_token")))
+                        {
+                            <ul class="navbar-nav ms-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" asp-page="/Cart">Cart</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-page="/login">@Context.Session.GetString("Ecommerce_username")</a>
+                                </li>
+                            </ul>
+                        }
+
+                        else
+                        {
+                            <ul class="navbar-nav ms-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-page="/login">Login</a>
+                                </li>
+                            </ul>
+                        }
                     </div>
                 </div>
             </div>

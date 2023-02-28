@@ -1,0 +1,31 @@
+﻿@page
+@model Ecommerce.Pages.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container">
+    <form method="post">
+        <div class="mb-3">
+            <label for="usernameControl" class="form-label">Username</label>
+            <input type="text" class="form-control" id="usernameControl" name="username" placeholder="Username" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="passwordControl" class="form-label">Password</label>
+            <input type="password" class="form-control" id="passwordControl" name="password" placeholder="Password" required>
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary mb-3">Login</button>
+        </div>
+
+    </form>
+</div>
+
+@if (Model.LoginStatus == LoginModel.Status.Error)
+{
+    <div class="alert alert-danger" role="alert">
+        Invalid username or password!
+    </div>
+}

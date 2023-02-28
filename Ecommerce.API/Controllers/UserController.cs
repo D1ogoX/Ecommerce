@@ -31,9 +31,9 @@ namespace Ecommerce.API.Controllers
 
         [HttpPost("auth")]
         [AllowAnonymous]
-        public async Task<ActionResult> Auth([FromBody] AuthRequest request)
+        public async Task<ActionResult> Auth([FromBody] AuthRequest auth)
         {
-            var response = await _userApplication.AuthenticationAsync(request);
+            var response = await _userApplication.AuthenticationAsync(new AuthRequest() { Username = auth.Username, Password = auth.Password });
 
             if (response.Report.Any())
                 return UnprocessableEntity(response.Report);

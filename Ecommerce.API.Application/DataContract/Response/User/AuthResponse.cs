@@ -5,5 +5,6 @@
         public string Token { get; set; }
         public int ExpireIn { get; set; }
         public string Type { get; set; }
+        public int userId { get; set; }
     }
 }
