@@ -7,6 +7,8 @@ namespace Ecommerce.API.Application.Interfaces
     public interface ICartApplication
     {
         Task<Response<List<CartResponse>>> GetUserCartAsync(int userId);
+        Task<Response<CartResponse>> GetCartByIdAsync(int cartId);
         Task<Response> AddCartAsync(CartRequest cart);
+        Task<Response> UpdateCartAsync(UpdateCartRequest cart);
     }
 }

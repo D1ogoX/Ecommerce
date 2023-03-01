@@ -46,6 +46,7 @@ namespace Ecommerce.API.Application.Mapper
         private void CartMap()
         {
             CreateMap<CartProductRequest, CartProductResponse>();
+            CreateMap<CartProductRequest, CartModel>();
             CreateMap<CartProductModel, CartProductResponse>();
 
             CreateMap<CartRequest, CartResponse>();

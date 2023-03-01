@@ -25,6 +25,20 @@ namespace Ecommerce.API.Infra.Repositories
             return;
         }
 
+        public async Task<CartModel> GetCartByIdAsync(int cartId)
+        {
+            var data = await _serviceConnector.GetAsync($"carts/{cartId}");
+
+            var cart = JsonConvert.DeserializeObject<CartModel>(data);
+
+            foreach (var _products in cart.products)
+            {
+                _products.product = await _productRepository.GetByIdAsync(_products.productId);
+            }
+
+            return cart;
+        }
+
         public async Task<List<CartModel>> GetUserCartAsync(int userId)
         {
             var data = await _serviceConnector.GetAsync($"carts/user/{userId}");
@@ -40,6 +54,15 @@ namespace Ecommerce.API.Infra.Repositories
             }
 
             return cartList;
+        }
+
+        public async Task UpdateCartAsync(CartModel cart)
+        {
+            var json = JsonConvert.SerializeObject(cart);
+
+            await _serviceConnector.PatchAsync($"carts/{cart.id}", json);
+
+            return;
         }
     }
 }

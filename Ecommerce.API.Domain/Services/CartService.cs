@@ -23,12 +23,30 @@ namespace Ecommerce.API.Domain.Services
             return response;
         }
 
+        public async Task<Response<CartModel>> GetCartByIdAsync(int cartId)
+        {
+            var response = new Response<CartModel>();
+
+            var data = await _cartRepository.GetCartByIdAsync(cartId);
+            response.Data = data;
+            return response;
+        }
+
         public async Task<Response<List<CartModel>>> GetUserCartAsync(int userId)
         {
             var response = new Response<List<CartModel>>();
 
             var data = await _cartRepository.GetUserCartAsync(userId);
             response.Data = data;
+            return response;
+        }
+
+        public async Task<Response> UpdateCartAsync(CartModel cart)
+        {
+            var response = new Response();
+
+            await _cartRepository.UpdateCartAsync(cart);
+
             return response;
         }
     }

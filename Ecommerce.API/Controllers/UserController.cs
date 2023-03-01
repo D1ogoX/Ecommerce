@@ -1,5 +1,4 @@
-﻿using Ecommerce.API.Application.Applications;
-using Ecommerce.API.Application.DataContract.Request.User;
+﻿using Ecommerce.API.Application.DataContract.Request.User;
 using Ecommerce.API.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +16,10 @@ namespace Ecommerce.API.Controllers
             _userApplication = userApplication;
         }
 
+        /// <summary>
+        /// Get all users
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("All")]
         public async Task<IActionResult> Get()
@@ -29,6 +32,11 @@ namespace Ecommerce.API.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Auth user
+        /// </summary>
+        /// <param name="auth"></param>
+        /// <returns></returns>
         [HttpPost("auth")]
         [AllowAnonymous]
         public async Task<ActionResult> Auth([FromBody] AuthRequest auth)

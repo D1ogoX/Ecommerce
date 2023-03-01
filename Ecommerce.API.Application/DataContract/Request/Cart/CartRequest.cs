@@ -13,6 +13,5 @@ namespace Ecommerce.API.Application.DataContract.Request.Cart
     {
         public int productId { get; set; }
         public int quantity { get; set; }
-        public ProductRequest product { get; set; }
     }
 }

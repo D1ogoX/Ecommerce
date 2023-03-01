@@ -1,6 +1,6 @@
 ﻿namespace Ecommerce.Models
 {
-    public class CartModel
+    public class CartModel : BaseModel
     {
         public int userId { get; set; }
         public DateTime date { get; set; }
@@ -27,5 +27,14 @@
     {
         public int productId { get; set; }
         public int quantity { get; set; }
+    }
+
+    public class CartUpdateRequestModel
+    {
+        public int id { get; set; }
+        public int userId { get; set; }
+        public DateTime date { get; set; }
+
+        public List<CartProductRequestModel> products { get; set; }
     }
 }

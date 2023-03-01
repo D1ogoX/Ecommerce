@@ -1,6 +1,7 @@
 ﻿@page
 @model Ecommerce.Pages.CartModel
 @{
+    ViewData["Title"] = "Cart";
 }
 
 <h1>Cart</h1>
@@ -21,7 +22,7 @@
         </div>
     </div>
 
-    @foreach(var cart in Model.cart.products)
+    @foreach (var cart in Model.cart.products)
     {
         <div class="row">
             <div class="col">
@@ -34,8 +35,66 @@
                 @cart.product.price
             </div>
             <div class="col">
-                @cart.quantity
+                <div class="row">
+                    <div class="col">
+                        @if (cart.quantity > 1)
+                        {
+                            <form method="post">
+                                @{
+                                    int quantityMinus = cart.quantity - 1;
+                                }
+                                <input type="hidden" name="idCart" value="@Model.cart.id"/>
+                                <input type="hidden" name="idProduct" value="@cart.product.id"/>
+                                <input type="hidden" name="quantity" value="@quantityMinus"/>
+
+                                <button type="submit" class="btn-danger">-</button>
+                            </form>
+                        }
+
+                        else
+                        {
+                            <button type="button" class="btn-danger" disabled>-</button>
+                        }
+                    </div>
+
+                    <div>
+                        @cart.quantity
+                    </div>
+
+                    <div>
+                        <form method="post">
+                            @{
+                                int quantityPlus = cart.quantity + 1;
+                            }
+                            <input type="hidden" name="idCart" value="@Model.cart.id" />
+                            <input type="hidden" name="idProduct" value="@cart.product.id" />
+                            <input type="hidden" name="quantity" value="@quantityPlus" />
+
+                            <button type="submit" class="btn-success">+</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     }
 </div>
+
+
+    @switch (Model.updateStatus)
+    {
+        case CartModel.Status.Success:
+
+        <div class="alert alert-success" role="alert">
+            Cart updated!
+        </div>
+
+        break;
+
+        case CartModel.Status.Error:
+
+        <div class="alert alert-danger" role="alert">
+            A error ocurred while updating cart!
+        </div>
+
+        break;
+}   

@@ -24,14 +24,33 @@ namespace Ecommerce.Repositories
             return data;
         }
 
+        public async Task<CartModel> GetCartByIdAsync(int cartId)
+        {
+            var data = await _serviceConnector.GetAsync("api/Cart/" + cartId);
+
+            var dataObject = JsonConvert.DeserializeObject<JObject>(data);
+            var carts = dataObject.GetValue("data");
+
+            return JsonConvert.DeserializeObject<CartModel>(carts.ToString());
+        }
+
         public async Task<CartModel> GetCartByUserIdAsync(int userId)
         {
-            var data = await _serviceConnector.GetAsync("api/Cart/" + userId);
+            var data = await _serviceConnector.GetAsync("api/Cart/user/" + userId);
 
             var dataObject = JsonConvert.DeserializeObject<JObject>(data);
             var carts = dataObject.GetValue("data");
 
             return JsonConvert.DeserializeObject<List<CartModel>>(carts.ToString()).First();
+        }
+
+        public async Task<bool> UpdateCart(CartUpdateRequestModel cart)
+        {
+            var json = JsonConvert.SerializeObject(cart);
+
+            var data = await _serviceConnector.PatchAsync("api/cart/update", json);
+
+            return data;
         }
     }
 }
